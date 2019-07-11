@@ -92,6 +92,7 @@ body {
 }
 
 .card {
+  position: relative;
   width: 100%;
   padding: 20px;
   display: flex;
@@ -123,5 +124,25 @@ body {
   margin: 3px 0 10px;
 }
 
+.card .hidden-info {
+  display: none;
+}
 
+.card .expand-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
 
+.expand-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.expand-card img {
+  align-self: center;
+}
+
+.expand-card .hidden-info {
+  display: block;
+}

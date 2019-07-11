@@ -72,6 +72,7 @@ followersArray.forEach(user => {
 function ghUser(userData) {
   // Create elements
   const card = document.createElement('div')
+  const expandBtn = document.createElement('button')
   const img = document.createElement('img')
   const cardInfo = document.createElement('div')
   const name = document.createElement('h3')
@@ -82,10 +83,12 @@ function ghUser(userData) {
   const followers = document.createElement('p')
   const following = document.createElement('p')
   const bio = document.createElement('p')
+  const hiddenInfo = document.createElement('div')
 
   // Structure elements
   card.appendChild(img)
   card.appendChild(cardInfo)
+  card.appendChild(expandBtn)
   cardInfo.appendChild(name)
   cardInfo.appendChild(handle)
   cardInfo.appendChild(location)
@@ -93,8 +96,10 @@ function ghUser(userData) {
   cardInfo.appendChild(followers)
   cardInfo.appendChild(following)
   cardInfo.appendChild(bio)
+  cardInfo.appendChild(hiddenInfo)
 
   // Set attributes
+  expandBtn.textContent = 'Expand'
   img.src = userData.avatar_url
   name.textContent = userData.name
   handle.textContent = userData.login
@@ -109,9 +114,16 @@ function ghUser(userData) {
 
   // Set classes
   card.classList.add('card')
+  expandBtn.classList.add('expand-btn')
   cardInfo.classList.add('card-info')
   name.classList.add('name')
   handle.classList.add('username')
+  hiddenInfo.classList.add('hidden-info')
+
+  // Button events
+  expandBtn.addEventListener('click', () => {
+    card.classList.toggle('expand-card')
+  })
 
   return card
 }
@@ -146,7 +158,7 @@ function userFollowers(userData) {
           console.log('API data succesfully retrieved', user)
           cards.appendChild(ghUser(user.data))
         })
-        
+
         .catch(error =>{
           // Follower retrieval unsuccessful
           console.log('API currently down', error)
@@ -159,7 +171,6 @@ function userFollowers(userData) {
       console.log('API followers currently down', error)
     })
 }
-
 
 // Look into adding more info as an expanding card. You will need to create some new CSS and a button that expands and contracts the card.
 
