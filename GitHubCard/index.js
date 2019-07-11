@@ -4,8 +4,9 @@
 */
 
 axios.get(`https://api.github.com/users/arvagas`)
-  .then(data=>{
-    console.log('API data succesfully retrieved', data)
+  .then(user=>{
+    console.log('API data succesfully retrieved', user)
+    cards.appendChild(ghUser(user.data))
   })
   .catch(error =>{
     console.log('API currently down', error)
@@ -21,6 +22,9 @@ axios.get(`https://api.github.com/users/arvagas`)
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
+
+const cards = document.querySelector('.cards')
+
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
@@ -75,20 +79,22 @@ function ghUser(user) {
   cardInfo.appendChild(handle)
   cardInfo.appendChild(location)
   cardInfo.appendChild(profile)
-  profile.appendChild(profileLink)
   cardInfo.appendChild(followers)
   cardInfo.appendChild(following)
   cardInfo.appendChild(bio)
 
   // Set attributes
-  img.src = user.data.avatar_url
-  name.textContent = user.data.name
-  handle.textContent = user.data.login
-  location.textContent = user.data.location
-  profileLink.textContent = user.data.html_url
-  followers.textContent = user.data.followers
-  following.textContent = user.data.following
-  bio.textContent = user.data.bio
+  img.src = user.avatar_url
+  name.textContent = user.name
+  handle.textContent = user.login
+  location.textContent = `Location: ${user.location}`
+  profile.textContent = `Profile: `
+  profileLink.textContent = user.html_url
+  profileLink.href = user.html_url
+  profile.appendChild(profileLink) // Need to append profileLink afterwards to not overwrite textContent
+  followers.textContent = `Followers: ${user.followers}`
+  following.textContent = `Following: ${user.following}`
+  bio.textContent = `Bio: ${user.bio}`
 
   // Set classes
   card.classList.add('card')
