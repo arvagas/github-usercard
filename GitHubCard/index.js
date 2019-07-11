@@ -79,6 +79,24 @@ function ghUser(user) {
   cardInfo.appendChild(followers)
   cardInfo.appendChild(following)
   cardInfo.appendChild(bio)
+
+  // Set attributes
+  img.src = user.data.avatar_url
+  name.textContent = user.data.name
+  handle.textContent = user.data.login
+  location.textContent = user.data.location
+  profileLink.textContent = user.data.html_url
+  followers.textContent = user.data.followers
+  following.textContent = user.data.following
+  bio.textContent = user.data.bio
+
+  // Set classes
+  card.classList.add('card')
+  cardInfo.classList.add('card-info')
+  name.classList.add('name')
+  handle.classList.add('username')
+
+  return card
 }
 
 /* List of LS Instructors Github username's: 
