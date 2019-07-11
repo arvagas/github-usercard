@@ -25,7 +25,6 @@ axios.get(`https://api.github.com/users/arvagas`)
 
 const cards = document.querySelector('.cards')
 
-
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
           , manually find some other users' github handles, or use the list found 
@@ -36,7 +35,18 @@ const cards = document.querySelector('.cards')
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['tetondan','dustinmyers','justsml','luishrd','bigknell'];
+followersArray.forEach(user => {
+  axios.get(`https://api.github.com/users/${user}`)
+  .then(user=>{
+    console.log('API data succesfully retrieved', user)
+    cards.appendChild(ghUser(user.data))
+  })
+  .catch(error =>{
+    console.log('API currently down', error)
+  })
+})
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
