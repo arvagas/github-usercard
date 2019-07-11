@@ -85,7 +85,7 @@ function ghUser(userData) {
   const bio = document.createElement('p')
   const hiddenInfo = document.createElement('div')
   const publicRepos = document.createElement('p')
-  const publicProjects = document.createElement('p')
+  const publicGists = document.createElement('p')
   const userCreate = document.createElement('p')
   const userUpdate = document.createElement('p')
   const ghChart = document.createElement('img')
@@ -103,7 +103,7 @@ function ghUser(userData) {
   cardInfo.appendChild(bio)
   cardInfo.appendChild(hiddenInfo)
   hiddenInfo.appendChild(publicRepos)
-  hiddenInfo.appendChild(publicProjects)
+  hiddenInfo.appendChild(publicGists)
   hiddenInfo.appendChild(userCreate)
   hiddenInfo.appendChild(userUpdate)
   hiddenInfo.appendChild(ghChart)
@@ -122,7 +122,7 @@ function ghUser(userData) {
   following.textContent = `Following: ${userData.following}`
   bio.textContent = `Bio: ${userData.bio}`
   publicRepos.textContent = `Public Repos: ${userData.public_repos}`
-  publicProjects.textContent = `Public Projects: ${userData.public_gists}`
+  publicGists.textContent = `Public Gists: ${userData.public_gists}`
   userCreate.textContent = `Account created on ${userData.created_at}`
   userUpdate.textContent = `Account updated on ${userData.updated_at}`
   // Attribute below is from https://github.com/2016rshah/githubchart-api
