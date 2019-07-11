@@ -127,35 +127,39 @@ function ghUser(userData) {
 // @@@@@@@@@@@@@@@@@@@@ Stretch Goals @@@@@@@@@@@@@@@@@@@@
 
 // Instead of manually creating a list of followers, do it programmatically. Create a function that requests the followers data from the API after it has received your data and create a card for each of your followers. Hint: you can chain promises.
+
 function userFollowers(userData) {
+  // Get the api list of users following inputted user
   axios.get(`https://api.github.com/users/${userData.login}/followers`)
     .then(user=>{
       console.log('API data for followers succesfully retrieved', user)
+      // We want to push all the followers logins into an array
       const userFollowersArray = []
-      const followerData = user.data
-      console.log(followerData)
-      followerData.forEach(follower => {
+      user.data.forEach(follower => {
         userFollowersArray.push(follower.login)
       })
-      console.log(userFollowersArray)
-
+      // Display cards for the followers
       userFollowersArray.forEach(user => {
         axios.get(`https://api.github.com/users/${user}`)
         .then(user=>{
+          // Follower data retrieved
           console.log('API data succesfully retrieved', user)
           cards.appendChild(ghUser(user.data))
         })
-
+        
         .catch(error =>{
+          // Follower retrieval unsuccessful
           console.log('API currently down', error)
         })
       })
     })
 
     .catch(error =>{
+      // Could not retrieve follower list
       console.log('API followers currently down', error)
     })
 }
+
 
 // Look into adding more info as an expanding card. You will need to create some new CSS and a button that expands and contracts the card.
 
