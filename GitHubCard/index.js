@@ -140,6 +140,8 @@ function ghUser(userData) {
   // Button events
   expandBtn.addEventListener('click', () => {
     card.classList.toggle('expand-card')
+    if (expandBtn.textContent === 'Expand') expandBtn.textContent = 'Collapse'
+    else expandBtn.textContent = 'Expand'
   })
 
   return card
