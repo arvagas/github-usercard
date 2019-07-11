@@ -141,6 +141,15 @@ body {
 
 .expand-card img {
   align-self: center;
+  margin: 0;
+}
+
+.expand-card .name {
+  text-align: center;
+}
+
+.expand-card .username {
+  text-align: center;
 }
 
 .expand-card .hidden-info {

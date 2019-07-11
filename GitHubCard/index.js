@@ -84,6 +84,10 @@ function ghUser(userData) {
   const following = document.createElement('p')
   const bio = document.createElement('p')
   const hiddenInfo = document.createElement('div')
+  const publicRepos = document.createElement('p')
+  const publicProjects = document.createElement('p')
+  const userCreate = document.createElement('p')
+  const userUpdate = document.createElement('p')
 
   // Structure elements
   card.appendChild(img)
@@ -97,6 +101,10 @@ function ghUser(userData) {
   cardInfo.appendChild(following)
   cardInfo.appendChild(bio)
   cardInfo.appendChild(hiddenInfo)
+  hiddenInfo.appendChild(publicRepos)
+  hiddenInfo.appendChild(publicProjects)
+  hiddenInfo.appendChild(userCreate)
+  hiddenInfo.appendChild(userUpdate)
 
   // Set attributes
   expandBtn.textContent = 'Expand'
@@ -111,6 +119,10 @@ function ghUser(userData) {
   followers.textContent = `Followers: ${userData.followers}`
   following.textContent = `Following: ${userData.following}`
   bio.textContent = `Bio: ${userData.bio}`
+  publicRepos.textContent = `Public Repos: ${userData.public_repos}`
+  publicProjects.textContent = `Public Projects: ${userData.public_gists}`
+  userCreate.textContent = `Account created on ${userData.created_at}`
+  userUpdate.textContent = `Account updated on ${userData.updated_at}`
 
   // Set classes
   card.classList.add('card')
