@@ -7,6 +7,7 @@ axios.get(`https://api.github.com/users/arvagas`)
   .then(user=>{
     console.log('API data succesfully retrieved', user)
     cards.appendChild(ghUser(user.data))
+    userFollowers(user.data)
   })
   .catch(error =>{
     console.log('API currently down', error)
@@ -68,7 +69,7 @@ followersArray.forEach(user => {
 
 */
 
-function ghUser(user) {
+function ghUser(userData) {
   // Create elements
   const card = document.createElement('div')
   const img = document.createElement('img')
@@ -94,17 +95,17 @@ function ghUser(user) {
   cardInfo.appendChild(bio)
 
   // Set attributes
-  img.src = user.avatar_url
-  name.textContent = user.name
-  handle.textContent = user.login
-  location.textContent = `Location: ${user.location}`
+  img.src = userData.avatar_url
+  name.textContent = userData.name
+  handle.textContent = userData.login
+  location.textContent = `Location: ${userData.location}`
   profile.textContent = `Profile: `
-  profileLink.textContent = user.html_url
-  profileLink.href = user.html_url
+  profileLink.textContent = userData.html_url
+  profileLink.href = userData.html_url
   profile.appendChild(profileLink) // Need to append profileLink afterwards to not overwrite textContent
-  followers.textContent = `Followers: ${user.followers}`
-  following.textContent = `Following: ${user.following}`
-  bio.textContent = `Bio: ${user.bio}`
+  followers.textContent = `Followers: ${userData.followers}`
+  following.textContent = `Following: ${userData.following}`
+  bio.textContent = `Bio: ${userData.bio}`
 
   // Set classes
   card.classList.add('card')
@@ -122,3 +123,40 @@ function ghUser(user) {
   luishrd
   bigknell
 */
+
+// @@@@@@@@@@@@@@@@@@@@ Stretch Goals @@@@@@@@@@@@@@@@@@@@
+
+// Instead of manually creating a list of followers, do it programmatically. Create a function that requests the followers data from the API after it has received your data and create a card for each of your followers. Hint: you can chain promises.
+function userFollowers(userData) {
+  axios.get(`https://api.github.com/users/${userData.login}/followers`)
+    .then(user=>{
+      console.log('API data for followers succesfully retrieved', user)
+      const userFollowersArray = []
+      const followerData = user.data
+      console.log(followerData)
+      followerData.forEach(follower => {
+        userFollowersArray.push(follower.login)
+      })
+      console.log(userFollowersArray)
+
+      userFollowersArray.forEach(user => {
+        axios.get(`https://api.github.com/users/${user}`)
+        .then(user=>{
+          console.log('API data succesfully retrieved', user)
+          cards.appendChild(ghUser(user.data))
+        })
+
+        .catch(error =>{
+          console.log('API currently down', error)
+        })
+      })
+    })
+
+    .catch(error =>{
+      console.log('API followers currently down', error)
+    })
+}
+
+// Look into adding more info as an expanding card. You will need to create some new CSS and a button that expands and contracts the card.
+
+// Look into adding your GitHub contribution graph. There are a number of different ways of doing this, this Stack Overflow discussion will get you started: https://stackoverflow.com/questions/34516592/embed-github-contributions-graph-in-website
