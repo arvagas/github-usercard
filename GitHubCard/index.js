@@ -88,6 +88,7 @@ function ghUser(userData) {
   const publicProjects = document.createElement('p')
   const userCreate = document.createElement('p')
   const userUpdate = document.createElement('p')
+  const ghChart = document.createElement('img')
 
   // Structure elements
   card.appendChild(img)
@@ -105,6 +106,7 @@ function ghUser(userData) {
   hiddenInfo.appendChild(publicProjects)
   hiddenInfo.appendChild(userCreate)
   hiddenInfo.appendChild(userUpdate)
+  hiddenInfo.appendChild(ghChart)
 
   // Set attributes
   expandBtn.textContent = 'Expand'
@@ -123,6 +125,8 @@ function ghUser(userData) {
   publicProjects.textContent = `Public Projects: ${userData.public_gists}`
   userCreate.textContent = `Account created on ${userData.created_at}`
   userUpdate.textContent = `Account updated on ${userData.updated_at}`
+  // Attribute below is from https://github.com/2016rshah/githubchart-api
+  ghChart.src = `http://ghchart.rshah.org/${userData.login}`
 
   // Set classes
   card.classList.add('card')
@@ -131,6 +135,7 @@ function ghUser(userData) {
   name.classList.add('name')
   handle.classList.add('username')
   hiddenInfo.classList.add('hidden-info')
+  ghChart.classList.add('gh-chart')
 
   // Button events
   expandBtn.addEventListener('click', () => {

@@ -134,6 +134,11 @@ body {
   right: 10px;
 }
 
+.card .gh-chart {
+  margin-top: 1rem;
+  width: 100%;
+}
+
 .expand-card {
   display: flex;
   flex-direction: column;
