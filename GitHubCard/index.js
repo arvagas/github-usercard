@@ -3,6 +3,14 @@
            https://api.github.com/users/<your name>
 */
 
+axios.get(`https://api.github.com/users/arvagas`)
+  .then(data=>{
+    console.log('API data succesfully retrieved', data)
+  })
+  .catch(error =>{
+    console.log('API currently down', error)
+  })
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
