@@ -113,20 +113,21 @@ function ghUser(userData) {
   img.src = userData.avatar_url
   name.textContent = userData.name
   handle.textContent = userData.login
-  location.textContent = `Location: ${userData.location}`
+  location.textContent = userData.location ? `Location: ${userData.location}` : `Location: None`
   profile.textContent = `Profile: `
   profileLink.textContent = userData.html_url
   profileLink.href = userData.html_url
   profile.appendChild(profileLink) // Need to append profileLink afterwards to not overwrite textContent
   followers.textContent = `Followers: ${userData.followers}`
   following.textContent = `Following: ${userData.following}`
-  bio.textContent = `Bio: ${userData.bio}`
+  bio.textContent = userData.bio ? `Bio: ${userData.bio}` : `Bio: None`
   publicRepos.textContent = `Public Repos: ${userData.public_repos}`
   publicGists.textContent = `Public Gists: ${userData.public_gists}`
   userCreate.textContent = `Account created on ${userData.created_at}`
   userUpdate.textContent = `Account updated on ${userData.updated_at}`
   // Attribute below is from https://github.com/2016rshah/githubchart-api
   ghChart.src = `http://ghchart.rshah.org/${userData.login}`
+  ghChart.alt = `${userData.login}'s Github contribution chart`
 
   // Set classes
   card.classList.add('card')
