@@ -92,6 +92,7 @@ body {
 }
 
 .card {
+  position: relative;
   width: 100%;
   padding: 20px;
   display: flex;
@@ -123,5 +124,39 @@ body {
   margin: 3px 0 10px;
 }
 
+.card .hidden-info {
+  display: none;
+}
 
+.card .expand-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
 
+.card .gh-chart {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.expand-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.expand-card img {
+  align-self: center;
+  margin: 0;
+}
+
+.expand-card .name {
+  text-align: center;
+}
+
+.expand-card .username {
+  text-align: center;
+}
+
+.expand-card .hidden-info {
+  display: block;
+}
